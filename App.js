@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Goal from './Goal/Goal';
+import NumberGuesser from './NumberGuesser/NumberGuesser';
+import theme from './NumberGuesser/constants/theme';
 
 export default function App() {
 	return (
-		<View style={styles.screen}>
-			<Goal />
+		<View style={styles.app}>
+			{/* <Goal /> */}
+			<NumberGuesser />
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	screen: {
-		paddingVertical: 40,
-		paddingHorizontal: 20
+	app: {
+		flex: 1,
+		backgroundColor: theme.color.light
 	}
 });

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList, Button } from 'react-native';
+import { View, StyleSheet, FlatList, Button } from 'react-native';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
@@ -21,7 +21,7 @@ const Goal = () => {
 	};
 
 	return (
-		<View>
+		<View style={styles.screen}>
 			<Button title="Add New Goal" onPress={() => setIsAddMode(true)} />
 			<GoalInput onCancelAddGoal={exitAddGoal} visible={isAddMode} onAddGoal={onAddGoal} />
 			<FlatList
@@ -32,5 +32,13 @@ const Goal = () => {
 		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+	screen: {
+		paddingVertical: 40,
+		paddingHorizontal: 20,
+		flex: 1
+	}
+});
 
 export default Goal;
