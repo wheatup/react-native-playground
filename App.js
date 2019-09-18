@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Goal from './components/Goal/Goal';
+import Goal from './Goal/Goal';
 
 export default function App() {
 	return (
