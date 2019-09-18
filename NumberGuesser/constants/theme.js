@@ -11,7 +11,7 @@ export default {
 		alert: '#d43',
 		warning: '#d63'
 	},
-	padding: {
+	spacing: {
 		rim: 20,
 		gap: 10
 	},
