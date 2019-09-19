@@ -4,6 +4,8 @@ import Card from '../components/Card';
 import theme from '../constants/theme';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
+import Title from '../components/common/Title';
+import defaultStyle from '../constants/defaultStyle';
 
 const StartGameSceen = ({ onGameStart }) => {
 	const [enteredValue, setEnteredValue] = useState('');
@@ -39,9 +41,9 @@ const StartGameSceen = ({ onGameStart }) => {
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
 			<View style={styles.screen}>
-				<Text style={styles.title}>Start a New Game</Text>
+				<Text style={defaultStyle.h1}>Start a New Game</Text>
 				<Card style={styles.inputContainer}>
-					<Text>Select a Number</Text>
+				<Text style={defaultStyle.h2}>Select a Number</Text>
 					<Input
 						style={styles.input}
 						autoCapitalize="none"
@@ -71,7 +73,7 @@ const StartGameSceen = ({ onGameStart }) => {
 				</Card>
 				{confirmed &&
 					<Card style={styles.summaryContainer}>
-						<Text>You choosed</Text>
+						<Text style={defaultStyle.h2}>You choosed</Text>
 						<NumberContainer>{selectedNumber}</NumberContainer>
 						<View style={styles.summaryButton}>
 							<Button title="Start Game" onPress={() => onGameStart(selectedNumber)} />
@@ -88,11 +90,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		padding: 10,
 		alignItems: 'center',
-		paddingTop: 40
-	},
-	title: {
-		fontSize: theme.fontSize.h1,
-		marginBottom: 10
+		paddingTop: 20
 	},
 	inputContainer: {
 		width: '85%',

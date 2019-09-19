@@ -11,9 +11,9 @@ export default class NumberGuesser extends Component {
 		super(props);
 
 		this.state = {
-			userNumber: null,
+			userNumber: 1,
 			attempts: 0,
-			finished: false,
+			finished: true,
 			rounds: 0
 		}
 	}

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 	},
 	number: {
 		color: theme.color.primary,
-		fontSize: theme.fontSize.h1
+		fontSize: 20
 	}
 });
 
