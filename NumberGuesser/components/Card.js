@@ -11,7 +11,7 @@ const Card = ({ children, style, ...rest }) => {
 const styles = StyleSheet.create({
 	card: {
 		backgroundColor: '#fff',
-		padding: theme.spacing.rim,
+		padding: 20,
 		shadowColor: theme.color.dark,
 		shadowOpacity: 0.2,
 		shadowOffset: { width: 0, height: 2 },

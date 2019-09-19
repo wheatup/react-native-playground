@@ -3,8 +3,9 @@ import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, Keyboard, Ale
 import Card from '../components/Card';
 import theme from '../constants/theme';
 import Input from '../components/Input';
+import NumberContainer from '../components/NumberContainer';
 
-const StartGameSceen = () => {
+const StartGameSceen = ({ onGameStart }) => {
 	const [enteredValue, setEnteredValue] = useState('');
 	const [confirmed, setConfirmed] = useState(false);
 	const [selectedNumber, setSelectedNumber] = useState(NaN);
@@ -20,13 +21,14 @@ const StartGameSceen = () => {
 
 	const onConfirmInput = () => {
 		let number = parseInt(enteredValue);
-		if (isNaN(number) || number < 0 || number > 99) {
+		Keyboard.dismiss();
+		if (isNaN(number) || number < 0 || number > 999) {
 			Alert.alert('Invalid Number!', isNaN(number) ?
 				'The number you entered is invalid!' :
 				number < 0 ?
 					'The number must be a positive number' :
 					'The number must be smaller than 100!',
-				[{text: 'Got it', style: 'destructive', onPress: onRestInput}]);
+				[{ text: 'Got it', style: 'destructive', onPress: onRestInput }]);
 			return;
 		}
 		setConfirmed(true);
@@ -45,7 +47,7 @@ const StartGameSceen = () => {
 						autoCapitalize="none"
 						autoCorrect={false}
 						keyboardType="number-pad"
-						maxLength={2}
+						maxLength={3}
 						onChangeText={onNumberInput}
 						value={enteredValue}
 					/>
@@ -67,7 +69,15 @@ const StartGameSceen = () => {
 						</View>
 					</View>
 				</Card>
-				{confirmed && <Text>Chosen Number: {selectedNumber}</Text>}
+				{confirmed &&
+					<Card style={styles.summaryContainer}>
+						<Text>You choosed</Text>
+						<NumberContainer>{selectedNumber}</NumberContainer>
+						<View style={styles.summaryButton}>
+							<Button title="Start Game" onPress={() => onGameStart(selectedNumber)} />
+						</View>
+					</Card>
+				}
 			</View >
 		</TouchableWithoutFeedback>
 	);
@@ -76,12 +86,13 @@ const StartGameSceen = () => {
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
-		padding: theme.spacing.gap,
-		alignItems: 'center'
+		padding: 10,
+		alignItems: 'center',
+		paddingTop: 40
 	},
 	title: {
 		fontSize: theme.fontSize.h1,
-		marginVertical: theme.spacing.gap
+		marginBottom: 10
 	},
 	inputContainer: {
 		width: '85%',
@@ -99,6 +110,14 @@ const styles = StyleSheet.create({
 	input: {
 		width: 50,
 		textAlign: 'center'
+	},
+	summaryContainer: {
+		width: '85%',
+		marginTop: 20,
+		alignItems: 'center'
+	},
+	summaryButton: {
+		marginTop: 10
 	}
 });
 

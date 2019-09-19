@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Button } from 'react-native';
 import Goal from './Goal/Goal';
 import NumberGuesser from './NumberGuesser/NumberGuesser';
 import theme from './NumberGuesser/constants/theme';

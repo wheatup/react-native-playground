@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
 		height: 30,
 		borderBottomColor: 'gray',
 		borderBottomWidth: 1,
-		marginVertical: theme.spacing.gap
+		marginVertical: 10
 	}
 });
 
