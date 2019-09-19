@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import theme from '../constants/theme';
 
@@ -10,7 +10,7 @@ const Card = ({ children, style, ...rest }) => {
 
 const styles = StyleSheet.create({
 	card: {
-		backgroundColor: '#fff',
+		backgroundColor: theme.color.cardBg,
 		padding: 20,
 		shadowColor: theme.color.dark,
 		shadowOpacity: 0.2,

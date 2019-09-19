@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import { View, StyleSheet, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import Card from '../components/Card';
 import theme from '../constants/theme';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
 import Title from '../components/common/Title';
-import defaultStyle from '../constants/defaultStyle';
+import Scene from '../components/common/Scene';
+
+import Button from '../components/common/Button';
 
 const StartGameSceen = ({ onGameStart }) => {
 	const [enteredValue, setEnteredValue] = useState('');
@@ -40,10 +42,10 @@ const StartGameSceen = ({ onGameStart }) => {
 
 	return (
 		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-			<View style={styles.screen}>
-				<Text style={defaultStyle.h1}>Start a New Game</Text>
+			<Scene>
+				<Title>Start a New Game</Title>
 				<Card style={styles.inputContainer}>
-				<Text style={defaultStyle.h2}>Select a Number</Text>
+					<Title type="h2">Select a Number</Title>
 					<Input
 						style={styles.input}
 						autoCapitalize="none"
@@ -52,19 +54,18 @@ const StartGameSceen = ({ onGameStart }) => {
 						maxLength={3}
 						onChangeText={onNumberInput}
 						value={enteredValue}
+						keyboardAppearance="dark"
 					/>
 					<View style={styles.buttonContainer}>
 						<View style={styles.button}>
 							<Button
 								title="Reset"
-								color={theme.color.warning}
 								onPress={onRestInput}
 							/>
 						</View>
 						<View style={{ ...styles.button, marginLeft: 10 }}>
 							<Button
 								title="Confirm"
-								color={theme.color.primary}
 								onPress={onConfirmInput}
 								disabled={!enteredValue}
 							/>
@@ -73,25 +74,19 @@ const StartGameSceen = ({ onGameStart }) => {
 				</Card>
 				{confirmed &&
 					<Card style={styles.summaryContainer}>
-						<Text style={defaultStyle.h2}>You choosed</Text>
+						<Title type="h2">You choosed</Title>
 						<NumberContainer>{selectedNumber}</NumberContainer>
 						<View style={styles.summaryButton}>
 							<Button title="Start Game" onPress={() => onGameStart(selectedNumber)} />
 						</View>
 					</Card>
 				}
-			</View >
+			</Scene>
 		</TouchableWithoutFeedback>
 	);
 }
 
 const styles = StyleSheet.create({
-	screen: {
-		flex: 1,
-		padding: 10,
-		alignItems: 'center',
-		paddingTop: 20
-	},
 	inputContainer: {
 		width: '85%',
 		minWidth: 200,
@@ -100,7 +95,8 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		flexDirection: 'row',
 		width: '100%',
-		justifyContent: 'space-evenly'
+		justifyContent: 'space-evenly',
+		marginTop: 10
 	},
 	button: {
 		flex: 1

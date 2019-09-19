@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, TextInput, Button, Modal } from 'react-native';
+import { View, StyleSheet, TextInput, Modal } from 'react-native';
+import Button from '../../NumberGuesser/components/common/Button';
 
 const GoalInput = ({ onAddGoal, onCancelAddGoal, ...rest }) => {
 	const [enteredGoal, onGoalInput] = useState('');

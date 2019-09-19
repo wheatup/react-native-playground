@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Text, Button, Alert } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
-import theme from '../constants/theme';
 import Title from '../components/common/Title';
-import defaultStyle from '../constants/defaultStyle';
+import Scene from '../components/common/Scene';
+
+import Button from '../components/common/Button';
+
 
 const getRandomNumber = (min, max) => {
 	return min + Math.ceil(Math.random() * (max - min - 1));
@@ -54,36 +56,43 @@ const GameScreen = ({ onGameOver }) => {
 	}
 
 	return (
-		<View style={styles.screen}>
-			<Text style={defaultStyle.h1} >My {numberToCount(attempts)} Guess</Text>
+		<Scene>
+			<Title>My {numberToCount(attempts)} Guess</Title>
 			<Card style={styles.card}>
 				<NumberContainer>{currentGuess}</NumberContainer>
-				<View style={styles.buttonContainer}>
-					<Button title="Too Low" onPress={() => onNextGuess('higher')} />
+				<View style={styles.buttonArea}>
+					<View style={styles.buttonContainer}>
+						<View style={styles.button}>
+							<Button title="Too Low" style={{backgroundColor: '#396'}} onPress={() => onNextGuess('higher')} />
+						</View>
+						<View style={{...styles.button, marginLeft: 10}}>
+							<Button title="Too High" style={{backgroundColor: '#a63'}} onPress={() => onNextGuess('lower')} />
+						</View>
+					</View>
 					<Button title="Correct" onPress={() => onGameOver(attempts)} />
-					<Button title="Too High" onPress={() => onNextGuess('lower')} />
 				</View>
 			</Card>
-		</View>
+		</Scene>
 	);
 }
 
 const styles = StyleSheet.create({
-	screen: {
-		flex: 1,
-		padding: 10,
-		alignItems: 'center',
-		paddingTop: 20
-	},
 	card: {
 		alignItems: 'center',
 		width: '85%'
 	},
+	buttonArea: {
+		width: '100%'
+	},
 	buttonContainer: {
 		width: '100%',
 		flexDirection: 'row',
-		justifyContent: 'space-evenly',
+		justifyContent: 'space-between',
 		marginTop: 20,
+		marginBottom: 10
+	},
+	button: {
+		flex: 1
 	}
 });
 

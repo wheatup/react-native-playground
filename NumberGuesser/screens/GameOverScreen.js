@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import React from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 import Card from '../components/Card';
 import NumberContainer from '../components/NumberContainer';
-import theme from '../constants/theme';
 import Title from '../components/common/Title';
-import defaultStyle from '../constants/defaultStyle';
+import Scene from '../components/common/Scene';
+
+import Button from '../components/common/Button';
 
 const GameOverScreen = ({ attempts, onGameRestart }) => {
 	console.log(attempts);
 	return (
-		<View style={styles.screen}>
-			<Text style={defaultStyle.h1}>Game Over</Text>
+		<Scene>
+			<Title>Game Over</Title>
 			<Card style={styles.card}>
 				<View style={styles.imageContainer} >
-					<Image style={styles.image} source={require('../../assets/success.png')} resizeMode="cover" />
+					<Image
+						source={require('../../assets/success.png')} 
+						// source={{ uri: 'https://picsum.photos/640/480' }}
+						style={styles.image}
+						resizeMode="cover"
+					/>
 				</View>
-				<Text style={defaultStyle.h3}>Final attemps</Text>
+				<Title type="h2">Final attemps</Title>
 				<NumberContainer>{attempts}</NumberContainer>
 				<View style={styles.button}><Button title="Try Again" onPress={onGameRestart} /></View>
 			</Card>
-		</View>
+		</Scene>
 	);
 }
 
 const styles = StyleSheet.create({
-	screen: {
-		flex: 1,
-		alignItems: 'center',
-		marginTop: 20
-	},
 	card: {
 		justifyContent: 'center',
 		alignItems: 'center',

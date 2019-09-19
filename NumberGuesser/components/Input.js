@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import React from 'react';
+import { StyleSheet, TextInput } from 'react-native';
 import theme from '../constants/theme';
 
 const Input = ({ style, ...rest }) => {
@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
 		height: 30,
 		borderBottomColor: 'gray',
 		borderBottomWidth: 1,
-		marginVertical: 10
+		marginVertical: 10,
+		color: theme.color.text
 	}
 });
 

@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Text, StyleSheet } from 'react-native';
-import defaultStyle from '../../constants/defaultStyle';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 
+import Label from './Label';
 
-const Title = ({ type, children, ...rest }) => {
-	let style = styles[type];
+const Title = ({ type, style, children, ...rest }) => {
 	return (
-		<Text style={{ ...defaultStyle.text, ...style }} {...rest}>{children}</Text>
+		<Label style={{ ...styles[type || 'h1'], ...style }} {...rest}>{children}</Label>
 	);
 }
 
