@@ -23,7 +23,7 @@ const GameOverScreen = ({ attempts, onGameRestart }) => {
 				</View>
 				<Title type="h2">Final attemps</Title>
 				<NumberContainer>{attempts}</NumberContainer>
-				<View style={styles.button}><Button title="Try Again" onPress={onGameRestart} /></View>
+				<View style={styles.button}><Button onPress={onGameRestart} >Try Again</Button></View>
 			</Card>
 		</Scene>
 	);

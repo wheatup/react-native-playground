@@ -58,17 +58,10 @@ const StartGameSceen = ({ onGameStart }) => {
 					/>
 					<View style={styles.buttonContainer}>
 						<View style={styles.button}>
-							<Button
-								title="Reset"
-								onPress={onRestInput}
-							/>
+							<Button onPress={onRestInput}>Reset</Button>
 						</View>
 						<View style={{ ...styles.button, marginLeft: 10 }}>
-							<Button
-								title="Confirm"
-								onPress={onConfirmInput}
-								disabled={!enteredValue}
-							/>
+							<Button onPress={onConfirmInput} disabled={!enteredValue}>Confirm</Button>
 						</View>
 					</View>
 				</Card>
@@ -77,7 +70,7 @@ const StartGameSceen = ({ onGameStart }) => {
 						<Title type="h2">You choosed</Title>
 						<NumberContainer>{selectedNumber}</NumberContainer>
 						<View style={styles.summaryButton}>
-							<Button title="Start Game" onPress={() => onGameStart(selectedNumber)} />
+							<Button onPress={() => onGameStart(selectedNumber)}>Start Game</Button>
 						</View>
 					</Card>
 				}

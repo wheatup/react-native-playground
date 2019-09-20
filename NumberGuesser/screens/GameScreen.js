@@ -1,11 +1,14 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert, FlatList } from 'react-native';
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
 import Title from '../components/common/Title';
 import Scene from '../components/common/Scene';
 
 import Button from '../components/common/Button';
+import { Ionicons } from '@expo/vector-icons';
+import Label from '../components/common/Label';
+import theme from '../constants/theme';
 
 
 const getRandomNumber = (min, max) => {
@@ -28,17 +31,16 @@ const GameScreen = ({ onGameOver }) => {
 	const min = useRef(-1);
 	const max = useRef(1000);
 
-	const [attempts, setAttemps] = useState(1);
-	const [currentGuess, setCurrentGuess] = useState(getRandomNumber(min.current, max.current));
+	const [guessHistory, setGuessHistory] = useState([getRandomNumber(min.current, max.current)]);
 
 	const onNextGuess = hint => {
 		let prevMax = max.current;
 		let prevMin = min.current;
 
 		if (hint === 'lower') {
-			max.current = currentGuess;
+			max.current = guessHistory[0];
 		} else {
-			min.current = currentGuess;
+			min.current = guessHistory[0];
 		}
 
 		if (max.current - min.current <= 1) {
@@ -51,27 +53,34 @@ const GameScreen = ({ onGameOver }) => {
 		}
 
 		const number = getRandomNumber(min.current, max.current);
-		setAttemps(attempts + 1);
-		setCurrentGuess(number);
+		setGuessHistory([number, ...guessHistory]);
 	}
 
 	return (
 		<Scene>
-			<Title>My {numberToCount(attempts)} Guess</Title>
+			<Title>My {numberToCount(guessHistory.length)} Guess</Title>
 			<Card style={styles.card}>
-				<NumberContainer>{currentGuess}</NumberContainer>
+				<NumberContainer>{guessHistory[0]}</NumberContainer>
 				<View style={styles.buttonArea}>
 					<View style={styles.buttonContainer}>
 						<View style={styles.button}>
-							<Button title="Too Low" style={{backgroundColor: '#396'}} onPress={() => onNextGuess('higher')} />
+							<Button style={{ backgroundColor: theme.color.secondary }} onPress={() => onNextGuess('lower')}><Ionicons name="md-remove" size={24} color="#eee" /></Button>
 						</View>
-						<View style={{...styles.button, marginLeft: 10}}>
-							<Button title="Too High" style={{backgroundColor: '#a63'}} onPress={() => onNextGuess('lower')} />
+						<View style={{ ...styles.button, marginLeft: 10 }}>
+							<Button style={{ backgroundColor: theme.color.tertiary }} onPress={() => onNextGuess('higher')}><Ionicons name="md-add" size={24} color="#eee" /></Button>
 						</View>
 					</View>
-					<Button title="Correct" onPress={() => onGameOver(attempts)} />
+					<Button onPress={() => onGameOver(guessHistory.length)}>Correct</Button>
 				</View>
 			</Card>
+			<View style={styles.listContainer}>
+				<FlatList contentContainerStyle={styles.list} data={guessHistory} keyExtractor={guess => `guess#${guess}`} renderItem={({ item, index }) => (
+					<Card style={styles.listItem}>
+						<Title type="h1">{numberToCount(guessHistory.length - index) + ' Guess:'}</Title>
+						<Title type="h1">{item}</Title>
+					</Card>
+				)} />
+			</View>
 		</Scene>
 	);
 }
@@ -93,6 +102,24 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		flex: 1
+	},
+	listContainer: {
+		width: '85%',
+		flex: 1,
+		marginTop: 10,
+		borderRadius: 5,
+		overflow: 'hidden'
+	},
+	list: {
+		// flexDirection: 'column-reverse'
+	},
+	listItem: {
+		width: '100%',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		paddingVertical: 0,
+		marginBottom: 10
 	}
 });
 

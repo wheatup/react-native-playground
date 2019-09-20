@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import theme from '../../constants/theme';
 import Title from './Title';
 
-const Button = ({ children, style, color, title, disabled, ...rest }) => {
+const Button = ({ children, style, color, disabled, ...rest }) => {
 	const textStyle = color ? { ...styles.text, color } : styles.text;
 	const buttonStyle = { ...styles.button, ...style };
 	if (disabled) {
@@ -17,7 +17,7 @@ const Button = ({ children, style, color, title, disabled, ...rest }) => {
 	return (
 		<TouchableOpacity {...rest}>
 			<View style={buttonStyle}>
-				<Title type="h3" style={textStyle}>{title}</Title>
+				<Title type="h3" style={textStyle}>{children}</Title>
 			</View>
 		</TouchableOpacity>
 	);
