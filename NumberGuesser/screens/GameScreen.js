@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Alert, FlatList } from 'react-native';
+import { View, StyleSheet, Alert, FlatList, Dimensions } from 'react-native';
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
 import Title from '../components/common/Title';
@@ -57,8 +57,8 @@ const GameScreen = ({ onGameOver }) => {
 	}
 
 	return (
-		<Scene>
-			<Title>My {numberToCount(guessHistory.length)} Guess</Title>
+		<Scene scrollable={Dimensions.get('window').width > Dimensions.get('window').height}>
+			<Title style={{marginTop: 0}}>My {numberToCount(guessHistory.length)} Guess</Title>
 			<Card style={styles.card}>
 				<NumberContainer>{guessHistory[0]}</NumberContainer>
 				<View style={styles.buttonArea}>
@@ -88,7 +88,7 @@ const GameScreen = ({ onGameOver }) => {
 const styles = StyleSheet.create({
 	card: {
 		alignItems: 'center',
-		width: '85%'
+		width: '100%'
 	},
 	buttonArea: {
 		width: '100%'
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	listContainer: {
-		width: '85%',
+		width: '100%',
 		flex: 1,
 		marginTop: 10,
 		borderRadius: 5,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import theme from '../constants/theme';
 
 const Card = ({ children, style, ...rest }) => {
@@ -11,7 +11,8 @@ const Card = ({ children, style, ...rest }) => {
 const styles = StyleSheet.create({
 	card: {
 		backgroundColor: theme.color.cardBg,
-		padding: 20,
+		paddingVertical: 15,
+		paddingHorizontal: 20,
 		shadowColor: theme.color.dark,
 		shadowOpacity: 0.2,
 		shadowOffset: { width: 0, height: 2 },

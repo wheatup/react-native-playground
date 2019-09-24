@@ -8,32 +8,39 @@ import Scene from '../components/common/Scene';
 import Button from '../components/common/Button';
 
 const GameOverScreen = ({ attempts, onGameRestart }) => {
-	console.log(attempts);
 	return (
-		<Scene>
-			<Title>Game Over</Title>
-			<Card style={styles.card}>
-				<View style={styles.imageContainer} >
-					<Image
-						source={require('../../assets/success.png')} 
-						// source={{ uri: 'https://picsum.photos/640/480' }}
-						style={styles.image}
-						resizeMode="cover"
-					/>
-				</View>
-				<Title type="h2">Final attemps</Title>
-				<NumberContainer>{attempts}</NumberContainer>
-				<View style={styles.button}><Button onPress={onGameRestart} >Try Again</Button></View>
-			</Card>
+		<Scene scrollable={true}>
+			<View style={styles.cardContainer}>
+				<Title style={{marginTop: 0}}>Game Over</Title>
+				<Card style={styles.card}>
+					<View style={styles.imageContainer} >
+						<Image
+							source={require('../../assets/success.png')}
+							// source={{ uri: 'https://picsum.photos/640/480' }}
+							style={styles.image}
+							resizeMode="cover"
+						/>
+					</View>
+					<Title type="h2">Final attemps</Title>
+					<NumberContainer>{attempts}</NumberContainer>
+					<View style={styles.button}><Button onPress={onGameRestart} >Try Again</Button></View>
+				</Card>
+			</View>
 		</Scene>
 	);
 }
 
 const styles = StyleSheet.create({
+	cardContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: '100%'
+	},
 	card: {
 		justifyContent: 'center',
 		alignItems: 'center',
-		width: '85%'
+		width: '100%'
 	},
 	button: {
 		marginTop: 10

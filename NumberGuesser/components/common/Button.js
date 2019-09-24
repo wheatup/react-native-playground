@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, TouchableNativeFeedback, Platform } from 'react-native';
 import theme from '../../constants/theme';
 import Title from './Title';
 
@@ -14,21 +14,27 @@ const Button = ({ children, style, color, disabled, ...rest }) => {
 			rest.onPress = disabled ? () => { } : org;
 		}
 	}
+
+	let ButtonCompnent = TouchableOpacity;
+	if(Platform.OS === 'android' && Platform.Version >= 21) {
+		ButtonCompnent = TouchableNativeFeedback;
+	}
+
 	return (
-		<TouchableOpacity {...rest}>
+		<ButtonCompnent {...rest}>
 			<View style={buttonStyle}>
 				<Title type="h3" style={textStyle}>{children}</Title>
 			</View>
-		</TouchableOpacity>
+		</ButtonCompnent>
 	);
 };
 
 const styles = StyleSheet.create({
 	button: {
 		backgroundColor: theme.color.primary,
-		paddingVertical: 10,
+		paddingVertical: 7,
 		paddingHorizontal: 20,
-		borderRadius: 30
+		borderRadius: 100
 	},
 	text: {
 		fontFamily: 'open-sans-bold',

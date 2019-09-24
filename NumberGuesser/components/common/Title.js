@@ -11,21 +11,29 @@ const Title = ({ type, style, children, ...rest }) => {
 
 const styles = StyleSheet.create({
 	h1: {
+		width: '100%',
+		textAlign: 'center',
 		fontSize: 20,
 		fontFamily: 'open-sans-bold',
 		marginVertical: 10
 	},
 	h2: {
+		width: '100%',
+		textAlign: 'center',
 		fontSize: 16,
 		fontFamily: 'open-sans-bold',
 		marginVertical: 6
 	},
 	h3: {
+		width: '100%',
+		textAlign: 'center',
 		fontSize: 14,
 		fontFamily: 'open-sans-bold',
 		marginVertical: 4
 	},
 	h4: {
+		width: '100%',
+		textAlign: 'center',
 		fontSize: 12,
 		fontFamily: 'open-sans-bold'
 	}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Button, SafeAreaView } from 'react-native';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 
@@ -28,16 +28,20 @@ export default function App() {
 	}
 
 	return (
+		// <SafeAreaView style={styles.app}>
 		<View style={styles.app}>
 			{/* <Goal /> */}
 			<NumberGuesser />
 		</View>
+		// </SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
 	app: {
 		flex: 1,
-		backgroundColor: theme.color.light
+		width: '100%',
+		justifyContent: 'center',
+		backgroundColor: theme.color.sceneBg
 	}
 });

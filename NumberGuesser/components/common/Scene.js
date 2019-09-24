@@ -1,19 +1,33 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import theme from '../../constants/theme';
 
-const Scene = ({ style, children, ...rest }) => {
+const Scene = ({ style, children, scrollable, ...rest }) => {
+	let content = (
+		<View style={{ ...styles.scene, ...style }} {...rest}>
+			{children}
+		</View>
+	);
 	return (
-		<View style={{ ...styles.scene, ...style }} {...rest}>{children}</View>
+		scrollable ?
+			<ScrollView contentContainerStyle={styles.scrollView} alwaysBounceVertical={false}>
+				{content}
+			</ScrollView>
+			:
+			content
 	);
 }
 
 const styles = StyleSheet.create({
 	scene: {
 		flex: 1,
-		padding: 10,
 		alignItems: 'center',
-		backgroundColor: theme.color.sceneBg
+		paddingHorizontal: '6%',
+		paddingVertical: '2%',
+		// maxWidth: 480
+	},
+	scrollView: {
+		alignItems: 'center'
 	}
 });
 
